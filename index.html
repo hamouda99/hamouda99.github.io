@@ -15,7 +15,7 @@
 <script>
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError, {
+            navigator.geolocation.watchPosition(showPosition, showError, {
                 enableHighAccuracy: true, // Request high accuracy (GPS)
                 timeout: 30000,           // Timeout after 10 seconds
                 maximumAge: 0             // Disable cache, always fetch new position
