@@ -15,33 +15,31 @@
 <script>
     let acc = 100.0
 
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError, {
-                enableHighAccuracy: true, // Request high accuracy (GPS)
-                timeout: 30000,           // Timeout after 10 seconds
-                maximumAge: 0             // Disable cache, always fetch new position
-            });
-        } else {
-            document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
+    do{
+        setTimeout(function(){
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                        enableHighAccuracy: true, // Request high accuracy (GPS)
+                        timeout: 30000,           // Timeout after 10 seconds
+                        maximumAge: 0             // Disable cache, always fetch new position
+                    });
+                } else {
+                    document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+        }, 5000);
+        document.getElementById("location").innerHTML = `waiting for accurate location ...`;
+    }while(acc> 50.0)
+    
 
-    function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
 
     function showPosition(position) {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
         let accuracy = position.coords.accuracy;
         acc = accuracy
-        document.getElementById("location").innerHTML = `waiting for location`;
+        
 
         setTimeout(function(){
             document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
