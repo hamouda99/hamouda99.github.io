@@ -11,12 +11,11 @@
 <button onclick="getLocation()">Get My Location</button>
 
 <p id="location"></p>
-<p id="accurate"></p>
 
 <script>
     let acc = 100.0
     const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-    
+    const fs = require('fs')    
         
         async function getLocation() {
             do{
@@ -36,19 +35,20 @@
             
         }
         
-        //document.getElementById("location").innerHTML = `waiting for accurate location ...`;
-    
-    
-
 
     function showPosition(position) {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
         let accuracy = position.coords.accuracy;
         acc = accuracy
-        
+        let data = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
+
         document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
         
+        fs.writeFile('Output.txt', data, (err) => {
+        // In case of a error throw err.
+            if (err) throw err;
+        })
     }
 
     function showError(error) {
