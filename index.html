@@ -13,9 +13,11 @@
 <p id="location"></p>
 
 <script>
-    function getLocation() {
+    let acc = 100.0
+    do{
+        function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(showPosition, showError, {
+            navigator.geolocation.getCurrentPosition(showPosition, showError, {
                 enableHighAccuracy: true, // Request high accuracy (GPS)
                 timeout: 30000,           // Timeout after 10 seconds
                 maximumAge: 0             // Disable cache, always fetch new position
@@ -24,11 +26,16 @@
             document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
         }
     }
+    await sleep(5000);
+    document.getElementById("location").append("Waiting for 5 seconds...")
+    } while(acc > 50.0)
+    
 
     function showPosition(position) {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
         let accuracy = position.coords.accuracy;
+        acc = accuracy
 
         document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
     }
