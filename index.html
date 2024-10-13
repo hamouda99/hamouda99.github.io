@@ -11,6 +11,7 @@
 <button onclick="getLocation()">Get My Location</button>
 
 <p id="location"></p>
+<p id="savign"></p>
 
 <script>
     let acc = 100.0
@@ -40,15 +41,37 @@
         let lon = position.coords.longitude;
         let accuracy = position.coords.accuracy;
         acc = accuracy
-        let data = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
+        //let data = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
 
         document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
         
-        let blob = new Blob([data], { type: 'text/plain' });
+        /*let blob = new Blob([data], { type: 'text/plain' });
         let link = document.createElement('a');
         link.href = window.URL.createObjectURL(blob);
         link.download = 'location.txt'; // Filename for the download
         link.click(); // Trigger the download
+        */
+
+        fetch('/save-location', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                latitude: lat,
+                longitude: lon,
+                accuracy: accuracy
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("saving").innerHTML = "Location saved successfully!";
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            document.getElementById("saving").innerHTML = "Failed to save location.";
+            console.error('Error:', error);
+        });
     }
 
     function showError(error) {
