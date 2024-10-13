@@ -27,7 +27,7 @@
         }
     }
     await sleep(5000);
-    document.getElementById("location").append("Waiting for 5 seconds...")
+    document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
     } while(acc > 50.0)
     
 
