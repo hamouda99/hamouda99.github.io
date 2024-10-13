@@ -23,8 +23,9 @@
                 maximumAge: 0             // Disable cache, always fetch new position
             });
         } else {
-            sleep(5000);
-            document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+            setTimeout(function(){
+                document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+            }, 2000);
         }
     }
 
