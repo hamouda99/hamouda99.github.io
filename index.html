@@ -16,19 +16,21 @@
     let acc = 100.0
 
     
-        setTimeout(function(){
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition, showError, {
-                        enableHighAccuracy: true, // Request high accuracy (GPS)
-                        timeout: 10000,           // Timeout after 10 seconds
-                        maximumAge: 0             // Disable cache, always fetch new position
-                    });
-                } else {
-                    document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
-                }
+        
+        function getLocation() {
+            setTimeout(function(){
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                    enableHighAccuracy: true, // Request high accuracy (GPS)
+                    timeout: 10000,           // Timeout after 10 seconds
+                    maximumAge: 0             // Disable cache, always fetch new position
+                });
+            } else {
+                document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
             }
-        }, 5000);
+            }, 5000);
+        }
+        
         //document.getElementById("location").innerHTML = `waiting for accurate location ...`;
     
     
