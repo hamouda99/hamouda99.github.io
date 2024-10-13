@@ -41,6 +41,7 @@
         let lon = position.coords.longitude;
         let accuracy = position.coords.accuracy;
         acc = accuracy
+        document.getElementById("location").innerHTML = `waiting for location`;
 
         setTimeout(function(){
             document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
