@@ -16,7 +16,7 @@
     let acc = 100.0
 
     
-        //setTimeout(function(){
+        setTimeout(function(){
             function getLocation() {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition, showError, {
@@ -28,7 +28,7 @@
                     document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
                 }
             }
-        //}, 5000);
+        }, 5000);
         //document.getElementById("location").innerHTML = `waiting for accurate location ...`;
     
     
