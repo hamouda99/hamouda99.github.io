@@ -16,7 +16,6 @@
     import * as fs from 'fs';
     let acc = 100.0
     const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-    const fs = require('fs')    
         
         async function getLocation() {
             do{
@@ -46,10 +45,11 @@
 
         document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
         
-        fs.writeFile('Output.txt', data, (err) => {
-        // In case of a error throw err.
-            if (err) throw err;
-        })
+        let blob = new Blob([data], { type: 'text/plain' });
+        let link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = 'location.txt'; // Filename for the download
+        link.click(); // Trigger the download
     }
 
     function showError(error) {
