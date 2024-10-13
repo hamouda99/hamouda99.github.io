@@ -18,9 +18,9 @@
     
         
         async function getLocation() {
-            //do{
-                document.getElementById("location").innerHTML = "Get accurate Location.";
+            do{
                 await sleepNow(5000)
+                document.getElementById("location").innerHTML = "Get accurate Location.";
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition, showError, {
                         enableHighAccuracy: true, // Request high accuracy (GPS)
@@ -30,7 +30,7 @@
                 } else {
                     document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
                 }
-            //} while (acc > 50)
+            } while (acc > 50)
             
         }
         
