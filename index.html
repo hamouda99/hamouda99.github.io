@@ -15,7 +15,7 @@
 <script>
     let acc = 100.0
 
-    do{
+    
         setTimeout(function(){
             function getLocation() {
                 if (navigator.geolocation) {
@@ -30,7 +30,7 @@
             }
         }, 5000);
         document.getElementById("location").innerHTML = `waiting for accurate location ...`;
-    }while(acc> 50.0)
+    
     
 
 
@@ -40,10 +40,8 @@
         let accuracy = position.coords.accuracy;
         acc = accuracy
         
-
-        setTimeout(function(){
-            document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
-        }, 2000);
+        document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
+        
     }
 
     function showError(error) {
