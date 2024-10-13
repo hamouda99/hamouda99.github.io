@@ -23,9 +23,7 @@
                 maximumAge: 0             // Disable cache, always fetch new position
             });
         } else {
-            setTimeout(function(){
-                document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
-            }, 2000);
+            document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
         }
     }
 
@@ -44,6 +42,7 @@
         let accuracy = position.coords.accuracy;
         acc = accuracy
 
+        sleep(5000)
         document.getElementById("location").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon} <br> Accuracy: ${accuracy} meters`;
     }
 
