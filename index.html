@@ -18,17 +18,21 @@
     
         
         function getLocation() {
-            setTimeout(function(){
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError, {
-                    enableHighAccuracy: true, // Request high accuracy (GPS)
-                    timeout: 10000,           // Timeout after 10 seconds
-                    maximumAge: 0             // Disable cache, always fetch new position
-                });
-            } else {
-                document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
-            }
-            }, 5000);
+            do{
+                document.getElementById("location").innerHTML = "Get accurate Location.";
+                setTimeout(function(){
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                        enableHighAccuracy: true, // Request high accuracy (GPS)
+                        timeout: 10000,           // Timeout after 10 seconds
+                        maximumAge: 0             // Disable cache, always fetch new position
+                    });
+                } else {
+                    document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
+                }
+                }, 5000);
+            } while (acc > 50)
+            
         }
         
         //document.getElementById("location").innerHTML = `waiting for accurate location ...`;
