@@ -17,10 +17,10 @@
 
     
         
-        function getLocation() {
+        async function getLocation() {
             //do{
                 document.getElementById("location").innerHTML = "Get accurate Location.";
-                setTimeout(function(){
+                await sleepNow(5000)
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition, showError, {
                         enableHighAccuracy: true, // Request high accuracy (GPS)
@@ -30,7 +30,6 @@
                 } else {
                     document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
                 }
-                }, 5000);
             //} while (acc > 50)
             
         }
