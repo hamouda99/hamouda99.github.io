@@ -14,8 +14,8 @@
 
 <script>
     let acc = 100.0
-    do{
-        function getLocation() {
+
+    function getLocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition, showError, {
                 enableHighAccuracy: true, // Request high accuracy (GPS)
@@ -26,9 +26,7 @@
             document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
         }
     }
-    await sleep(5000);
-    document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
-    } while(acc > 50.0)
+
     
 
     function showPosition(position) {
