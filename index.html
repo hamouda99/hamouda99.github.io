@@ -18,7 +18,7 @@
     
         
         function getLocation() {
-            do{
+            //do{
                 document.getElementById("location").innerHTML = "Get accurate Location.";
                 setTimeout(function(){
                 if (navigator.geolocation) {
@@ -31,7 +31,7 @@
                     document.getElementById("location").innerHTML = "Geolocation is not supported by this browser.";
                 }
                 }, 5000);
-            } while (acc > 50)
+            //} while (acc > 50)
             
         }
         
